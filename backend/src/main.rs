@@ -5,18 +5,21 @@ use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
 use serde::{Deserialize, Serialize};
 
 const PATH: &str = "/var/www";
-const PATH_DEBUG: &str = "static";
+const PATH_DEBUG: &str = "../static";
 
 async fn index() -> Result<fs::NamedFile, Error> {
     if cfg!(not(debug_assertions)) {
-        return Ok(fs::NamedFile::open(
-            "/root/Projekt-Showcase/static/index.html",
-        )?);
+        return Ok(fs::NamedFile::open(format!(
+            "{}/Projekt-Showcase/static/index.html",
+            PATH
+        ))?);
     } else {
-        return Ok(fs::NamedFile::open("../static/index.html")?);
+        return Ok(fs::NamedFile::open(format!("{}/index.html", PATH_DEBUG))?);
     }
 }
 
+//------------------------------------------------------------------
+// start api
 #[derive(Serialize, Deserialize)]
 struct Comment {
     text: String,
@@ -32,6 +35,8 @@ async fn create_comment(comment: web::Json<Comment>) -> impl Responder {
 async fn get_all_comment() -> impl Responder {
     HttpResponse::Ok()
 }
+// end api
+//------------------------------------------------------------------
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
