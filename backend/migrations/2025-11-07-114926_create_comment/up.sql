@@ -1,0 +1,4 @@
+CREATE TABLE comment (
+  id SERIAL PRIMARY KEY,
+  body TEXT NOT NULL
+  )
