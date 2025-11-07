@@ -2,6 +2,7 @@ use actix_files as fs;
 use actix_web::Error;
 use actix_web::{App, HttpResponse, HttpServer, Responder, web};
 use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
+use serde::{Deserialize, Serialize};
 
 const PATH: &str = "/var/www";
 const PATH_DEBUG: &str = "static";
@@ -14,6 +15,22 @@ async fn index() -> Result<fs::NamedFile, Error> {
     } else {
         return Ok(fs::NamedFile::open("../static/index.html")?);
     }
+}
+
+#[derive(Serialize, Deserialize)]
+struct Comment {
+    text: String,
+}
+
+async fn create_comment(comment: web::Json<Comment>) -> impl Responder {
+    let comment_json: Comment = Comment {
+        text: format!("Created: {}", comment.text),
+    };
+    HttpResponse::Ok().json(comment_json)
+}
+
+async fn get_all_comment() -> impl Responder {
+    HttpResponse::Ok()
 }
 
 #[actix_web::main]
