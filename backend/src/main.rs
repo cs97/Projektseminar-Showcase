@@ -3,6 +3,9 @@ use actix_web::Error;
 use actix_web::{App, HttpResponse, HttpServer, Responder, web};
 use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
 
+const PATH: &str = "/var/www";
+const PATH_DEBUG: &str = "static";
+
 async fn index() -> Result<fs::NamedFile, Error> {
     if cfg!(not(debug_assertions)) {
         return Ok(fs::NamedFile::open(
@@ -20,9 +23,8 @@ async fn main() -> std::io::Result<()> {
 
         HttpServer::new(|| {
             App::new()
-                //.wrap(middleware::Compress::default())
                 .route("/", web::get().to(index))
-                .service(fs::Files::new("/", "/root/static"))
+                .service(fs::Files::new("/", PATH_DEBUG))
         })
         .bind(("127.0.0.1", 8080))?
         .run()
@@ -38,9 +40,8 @@ async fn main() -> std::io::Result<()> {
 
         HttpServer::new(|| {
             App::new()
-                //.wrap(middleware::Compress::default())
                 .route("/", web::get().to(index))
-                .service(fs::Files::new("/", "/root/static"))
+                .service(fs::Files::new("/", PATH))
         })
         .bind_openssl("0.0.0.0:443", builder)?
         .run()
