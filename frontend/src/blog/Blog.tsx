@@ -8,23 +8,7 @@ const Blog = () => {
 
 
     const timeline_content:{data: Array<blog_post_i>} = {
-        data: [
-            {
-                index: 1,
-                title: 'Titel 1',
-                content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, aliquam.'
-            },
-            {
-                index: 2,
-                title: 'Titel 2',
-                content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, aliquam.'
-            },
-            {
-                index: 3,
-                title: 'Titel 3',
-                content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, aliquam.'
-            }
-        ]
+        data: []
     }
 
     //Serverdaten lesen
