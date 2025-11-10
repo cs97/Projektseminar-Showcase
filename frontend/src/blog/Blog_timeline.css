@@ -1,0 +1,41 @@
+.timeline {
+    margin: 30px 50px;
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.refresh {
+    margin-left: 50px;
+    background-color: gray;
+    border-radius: 50px;
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+}
+
+.refresh:active {
+    background-color: darkslategray;
+}
+
+.post {
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border-color: #5a5a5a;
+    border-style: inset;
+    color: white;    
+    background-color: rgb(205, 205, 205);
+}
+
+.post-title {
+    font-size: 24px;
+}
+
+.post-content {
+    font-size: 16px;
+}
+

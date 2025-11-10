@@ -1,0 +1,6 @@
+.blog {
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    background-color: rgb(177, 177, 177);
+}

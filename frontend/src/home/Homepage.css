@@ -1,0 +1,7 @@
+.homepage {
+    background-color: rgb(177, 177, 177);
+    height: 90vh;
+    width: 100vw;
+    display: grid;
+    place-items: center;
+}
