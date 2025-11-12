@@ -121,6 +121,7 @@ async fn main() -> std::io::Result<()> {
         HttpServer::new(|| {
             App::new()
                 .route("/", web::get().to(index))
+                .route("/blog", web::get().to(index))
                 .route("/getall", web::get().to(get_all_comment))
                 .route("submit", web::post().to(submit))
                 .service(fs::Files::new("/", PATH_DEBUG))
@@ -140,6 +141,7 @@ async fn main() -> std::io::Result<()> {
         HttpServer::new(|| {
             App::new()
                 .route("/", web::get().to(index))
+                .route("/blog", web::get().to(index))
                 .route("/getall", web::get().to(get_all_comment))
                 .route("submit", web::post().to(submit))
                 .service(fs::Files::new("/", PATH))
