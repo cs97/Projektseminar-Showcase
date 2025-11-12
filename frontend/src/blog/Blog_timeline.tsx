@@ -4,8 +4,6 @@ import type { blog_post } from '../interface';
 
 const Blog_timeline = ({refresh, data}: {refresh():void, data: Array<blog_post>}) => {
 
-    console.log(data);
-    
     //auto refresh the timeline component everytime its rendered
     /*useEffect (() => {
         refresh()
