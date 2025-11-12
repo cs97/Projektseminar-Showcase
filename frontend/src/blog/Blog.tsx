@@ -7,29 +7,16 @@ import { useState } from 'react';
 
 const Blog = () => {
 
-    const [userData, setUserData] = useState<Array<blog_post>>([
-            {
-                title: 'Titel 1',
-                content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, aliquam.'
-            },
-            {
-                title: 'Titel 2',
-                content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, aliquam.'
-            },
-            {
-                title: 'Titel 3',
-                content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, aliquam.'
-            }
-        ])        
+    const [userData, setUserData] = useState<Array<blog_post>>([])        
 
     //Serverdaten lesen
     function refresh () {
         (async () => {
             try {
                 const {data} = await axios.get('/getall');
-                setUserData(data.arr)
-            } catch (error: unknown) {
-                console.log(error);
+                setUserData(data.arr||[])
+            } catch (error) {
+                console.log("failed to fetch data:", error);
                 setUserData([])
             }
         })();
@@ -39,7 +26,7 @@ const Blog = () => {
         <div className='blog'>
             {/*Passing the refresh function down so it can be executed by lower components*/}
             <Blog_form refresh={refresh} />
-            <Blog_timeline refresh={refresh} data={userData||[]} />
+            <Blog_timeline refresh={refresh} data={userData} />
         </div>
     )
 }
