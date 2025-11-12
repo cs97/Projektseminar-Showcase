@@ -5,6 +5,8 @@ import type { blog_post } from '../interface';
 
 const Blog_timeline = ({refresh, data}: {refresh():void, data: Array<blog_post>}) => {
 
+    console.log(data);
+    
     //auto refresh the timeline component everytime its rendered
     useEffect (() => {
         refresh()
@@ -15,9 +17,9 @@ const Blog_timeline = ({refresh, data}: {refresh():void, data: Array<blog_post>}
         <div className="refresh" onClick={refresh}><RefreshIcon /></div>
         <div className='timeline'>
             {/**create a visual post for every post object inside the 'data' Array*/}
-            {data.map((post) => {
+            {data.map((post, index) => {
                 return (
-                    <div className='post'>
+                    <div className='post' key={index}>
                         <div className='post-title'>{post.title}</div>
                         <div className='post-content'>{post.content}</div>
                     </div>

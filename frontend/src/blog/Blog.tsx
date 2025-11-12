@@ -3,23 +3,34 @@ import Blog_form from './Blog_form';
 import Blog_timeline from './Blog_timeline';
 import axios from 'axios';
 import type { blog_post } from '../interface';
+import { useState } from 'react';
 
 const Blog = () => {
 
-
-    const timeline_content:{data: Array<blog_post>} = {
-        data: []
-    }
+    const [userData, setUserData] = useState<Array<blog_post>>([
+            {
+                title: 'Titel 1',
+                content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, aliquam.'
+            },
+            {
+                title: 'Titel 2',
+                content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, aliquam.'
+            },
+            {
+                title: 'Titel 3',
+                content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Est, aliquam.'
+            }
+        ])        
 
     //Serverdaten lesen
     function refresh () {
         (async () => {
             try {
                 const {data} = await axios.get('/getall');
-                timeline_content.data = data.arr;
+                setUserData(data.arr)
             } catch (error: unknown) {
                 console.log(error);
-                
+                setUserData([])
             }
         })();
     }
@@ -28,7 +39,7 @@ const Blog = () => {
         <div className='blog'>
             {/*Passing the refresh function down so it can be executed by lower components*/}
             <Blog_form refresh={refresh} />
-            <Blog_timeline refresh={refresh} data={timeline_content.data} />
+            <Blog_timeline refresh={refresh} data={userData||[]} />
         </div>
     )
 }
