@@ -1,5 +1,7 @@
 pub mod models;
 pub mod schema;
+use crate::schema::comment::id;
+
 use self::models::*;
 use self::schema::comment::dsl::comment as comment_dsl;
 use actix_files as fs;
@@ -76,7 +78,8 @@ async fn get_all_comment() -> impl Responder {
 
     let connection = &mut establish_connection();
     let results = comment_dsl
-        .limit(5)
+        //.limit(5)
+        .order_by(id.desc())
         .select(Comment::as_select())
         .load(connection)
         .expect("Error loading posts");
