@@ -4,11 +4,6 @@ import type { blog_post } from '../interface';
 
 const Blog_timeline = ({refresh, data}: {refresh():void, data: Array<blog_post>}) => {
 
-    //auto refresh the timeline component everytime its rendered
-    /*useEffect (() => {
-        refresh()
-    });*/
-
     return (
         <>
         <div className="refresh" onClick={refresh}><RefreshIcon /></div>

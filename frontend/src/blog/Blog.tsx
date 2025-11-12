@@ -7,29 +7,24 @@ import { useEffect, useState } from 'react';
 
 const Blog = () => {
 
-    const [userData, setUserData] = useState<Array<blog_post>>([])        
-
-    useEffect(() => {
-        console.log("State updated (via useEffect):", userData);
-    }, [userData]);
+    const [userData, setUserData] = useState<Array<blog_post>>([])
 
     //Serverdaten lesen
     function refresh () {
         (async () => {
             try {
                 const {data} = await axios.get('/getall');
-                console.log("data from server:");                
-                console.log(data);                
                 setUserData(data.arr||[])
-                console.log("userData:");
-                console.log(userData);
-                
             } catch (error) {
                 console.log("failed to fetch data:", error);
                 setUserData([])
             }
         })();
-    }
+    }        
+
+    useEffect(() => {
+        refresh()
+    });
 
     return (
         <div className='blog'>
