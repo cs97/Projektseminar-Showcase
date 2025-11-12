@@ -24,7 +24,7 @@ const Blog = () => {
 
     useEffect(() => {
         refresh()
-    });
+    },[userData]);
 
     return (
         <div className='blog'>
