@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import './Blog_timeline.css'
 import RefreshIcon from '@mui/icons-material/Refresh'; //RefreshIcon from googles mui-icons
+import type { blog_post } from '../interface';
 
-const Blog_timeline = ({refresh, data}: {refresh():void, data: Array<{index: number, title: string, content: string}>}) => {
+const Blog_timeline = ({refresh, data}: {refresh():void, data: Array<blog_post>}) => {
 
     //auto refresh the timeline component everytime its rendered
     useEffect (() => {

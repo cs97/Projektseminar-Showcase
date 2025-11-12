@@ -2,12 +2,12 @@ import './Blog.css'
 import Blog_form from './Blog_form';
 import Blog_timeline from './Blog_timeline';
 import axios from 'axios';
-import type { blog_post_i } from '../interface';
+import type { blog_post } from '../interface';
 
 const Blog = () => {
 
 
-    const timeline_content:{data: Array<blog_post_i>} = {
+    const timeline_content:{data: Array<blog_post>} = {
         data: []
     }
 
