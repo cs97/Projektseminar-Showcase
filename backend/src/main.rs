@@ -78,7 +78,7 @@ async fn get_all_comment() -> impl Responder {
 
     let connection = &mut establish_connection();
     let results = comment_dsl
-        //.limit(5)
+        .limit(10)
         .order_by(id.desc())
         .select(Comment::as_select())
         .load(connection)
