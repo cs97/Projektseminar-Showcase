@@ -14,7 +14,12 @@ const Blog = () => {
         (async () => {
             try {
                 const {data} = await axios.get('/getall');
+                console.log("data from server:");                
+                console.log(data);                
                 setUserData(data.arr||[])
+                console.log("userData:");
+                console.log(userData);
+                
             } catch (error) {
                 console.log("failed to fetch data:", error);
                 setUserData([])
