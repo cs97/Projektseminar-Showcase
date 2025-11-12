@@ -3,11 +3,15 @@ import Blog_form from './Blog_form';
 import Blog_timeline from './Blog_timeline';
 import axios from 'axios';
 import type { blog_post } from '../interface';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Blog = () => {
 
     const [userData, setUserData] = useState<Array<blog_post>>([])        
+
+    useEffect(() => {
+        console.log("State updated (via useEffect):", userData);
+    }, [userData]);
 
     //Serverdaten lesen
     function refresh () {
