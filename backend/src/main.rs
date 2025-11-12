@@ -54,7 +54,6 @@ async fn submit(req_body: String) -> impl Responder {
         println!("{:?}", &req_body);
     }
 
-    //let data = json::parse(&req_body).unwrap();
     let data = serde_json::from_str::<CommentJson>(&req_body).unwrap();
 
     let mut conn = establish_connection();
@@ -66,7 +65,6 @@ async fn submit(req_body: String) -> impl Responder {
 
     diesel::insert_into(crate::schema::comment::table)
         .values(&new_comment)
-        // .returning(Post::as_select()) // Optional: Gibt den erstellten Eintrag inkl. ID zurück
         .execute(&mut conn)
         .expect("Fehler beim Speichern des Beitrags");
 
@@ -74,8 +72,6 @@ async fn submit(req_body: String) -> impl Responder {
 }
 
 async fn get_all_comment() -> impl Responder {
-    //let results = get_all_comment();
-
     let connection = &mut establish_connection();
     let results = comment_dsl
         .limit(10)
@@ -88,7 +84,6 @@ async fn get_all_comment() -> impl Responder {
 
     for p in results {
         let single_comment = object! {
-            //id: p.id,
             title: p.title,
             content: p.body,
         };
