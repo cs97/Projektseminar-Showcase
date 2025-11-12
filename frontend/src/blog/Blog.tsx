@@ -24,15 +24,6 @@ const Blog = () => {
         })();
     }
 
-    /*
-    TODO
-    - data is received with indices (new type probably) [x]
-    - option to refresh timeline manually [x]
-    - auto refresh on posting and loading [x]
-    - educational code comments on certain blog components [x]
-    - cleanup for ts-compiler
-    */
-
     return (
         <div className='blog'>
             {/*Passing the refresh function down so it can be executed by lower components*/}
