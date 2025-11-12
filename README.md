@@ -10,3 +10,18 @@ cd backend
 ```
 cargo run
 ```
+
+# setup frontend
+```
+cd frontend
+```
+
+start on local server
+```
+vite
+```
+
+build project (built project will be in "./dist")
+```
+npm run build
+```
