@@ -90,7 +90,7 @@ async fn get_all_comment() -> impl Responder {
         let single_comment = object! {
             //id: p.id,
             title: p.title,
-            body: p.body,
+            content: p.body,
         };
         arr = format!("{arr}{},", single_comment);
     }
