@@ -16,7 +16,7 @@ const Blog = () => {
         (async () => {
             try {
                 const {data} = await axios.get('/getall');
-                timeline_content.data = data;
+                timeline_content.data = data.arr;
             } catch (error: unknown) {
                 console.log(error);
                 
