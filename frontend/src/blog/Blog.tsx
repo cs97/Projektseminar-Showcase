@@ -15,7 +15,7 @@ const Blog = () => {
     function refresh () {
         (async () => {
             try {
-                const {data} = await axios.get('/data');
+                const {data} = await axios.get('/getall');
                 timeline_content.data = data;
             } catch (error: unknown) {
                 console.log(error);
