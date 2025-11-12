@@ -14,6 +14,7 @@ cargo run
 # setup frontend
 ```
 cd frontend
+npm install
 ```
 
 start on local server
