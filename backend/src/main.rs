@@ -12,7 +12,7 @@ use dotenvy::dotenv;
 use json::object;
 use openssl::ssl::{SslAcceptor, SslFiletype, SslMethod};
 use serde::{Deserialize, Serialize};
-use std::env;
+//use std::env;
 
 const PATH: &str = "/var/www/uni";
 const PATH_DEBUG: &str = "static";
@@ -125,7 +125,7 @@ async fn main() -> std::io::Result<()> {
                 .route("/blog", web::get().to(index))
                 .route("/getall", web::get().to(get_all_comment))
                 .route("/submit", web::post().to(submit))
-                .route("/ping", web::post().to(pong))
+                .route("/ping", web::get().to(pong))
                 .service(fs::Files::new("/", PATH_DEBUG))
         })
         .bind(("127.0.0.1", 8080))?
@@ -146,7 +146,7 @@ async fn main() -> std::io::Result<()> {
                 .route("/blog", web::get().to(index))
                 .route("/getall", web::get().to(get_all_comment))
                 .route("/submit", web::post().to(submit))
-                .route("/ping", web::post().to(pong))
+                .route("/ping", web::get().to(pong))
                 .service(fs::Files::new("/", PATH))
         })
         .bind_openssl("0.0.0.0:4443", builder)?
