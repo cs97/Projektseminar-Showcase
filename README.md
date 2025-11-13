@@ -26,6 +26,8 @@ cargo run
 # setup frontend
 ```
 cd frontend
+```
+```
 npm install
 ```
 
