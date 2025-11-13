@@ -23,7 +23,9 @@ const PATH_DEBUG: &str = "static";
 pub fn establish_connection() -> PgConnection {
     dotenv().ok();
 
-    let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    //let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
+    let database_url =
+        "postgres://postgres:MLUISCOOL@localhost/Projektseminar-Showcase-database".to_string();
     PgConnection::establish(&database_url)
         .unwrap_or_else(|_| panic!("Error connecting to {}", database_url))
 }
@@ -108,6 +110,10 @@ async fn index() -> Result<fs::NamedFile, Error> {
     }
 }
 
+async fn pong() -> impl Responder {
+    HttpResponse::Ok().body("pong")
+}
+
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
     if cfg!(debug_assertions) {
@@ -118,7 +124,8 @@ async fn main() -> std::io::Result<()> {
                 .route("/", web::get().to(index))
                 .route("/blog", web::get().to(index))
                 .route("/getall", web::get().to(get_all_comment))
-                .route("submit", web::post().to(submit))
+                .route("/submit", web::post().to(submit))
+                .route("/ping", web::post().to(pong))
                 .service(fs::Files::new("/", PATH_DEBUG))
         })
         .bind(("127.0.0.1", 8080))?
@@ -138,7 +145,8 @@ async fn main() -> std::io::Result<()> {
                 .route("/", web::get().to(index))
                 .route("/blog", web::get().to(index))
                 .route("/getall", web::get().to(get_all_comment))
-                .route("submit", web::post().to(submit))
+                .route("/submit", web::post().to(submit))
+                .route("/ping", web::post().to(pong))
                 .service(fs::Files::new("/", PATH))
         })
         .bind_openssl("0.0.0.0:4443", builder)?
