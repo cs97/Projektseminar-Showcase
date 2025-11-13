@@ -5,7 +5,7 @@ podman run --name Projektseminar-Showcase-database -p 127.0.0.1:5432:5432 -e POS
 
 ```
 curl --proto '=https' --tlsv1.2 -LsSf https://github.com/diesel-rs/diesel/releases/latest/download/diesel_cli-installer.sh | sh
-
+```
 
 ```
 diesel setup
