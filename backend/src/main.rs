@@ -101,10 +101,7 @@ async fn get_all_comment() -> impl Responder {
 
 async fn index() -> Result<fs::NamedFile, Error> {
     if cfg!(not(debug_assertions)) {
-        return Ok(fs::NamedFile::open(format!(
-            "{}/Projekt-Showcase/static/index.html",
-            PATH
-        ))?);
+        return Ok(fs::NamedFile::open(format!("{}/index.html", PATH))?);
     } else {
         return Ok(fs::NamedFile::open(format!("{}/index.html", PATH_DEBUG))?);
     }
