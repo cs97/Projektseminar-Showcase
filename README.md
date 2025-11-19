@@ -36,17 +36,20 @@ start on local server
 vite
 ```
 
-# stuff
+ POST -d '{"title":"curl test","content":"curl test"}' https://chrswr.de:4443/submit
 ```
-curl https://chrswr.de:4443/blog
-```
-```
-curl -X POST -d '{"title":"curl test","content":"curl test"}' https://chrswr.de:4443/submit
-```
-
-
 
 build project (built project will be in "./dist")
 ```
 npm run build
 ```
+
+
+
+
+# stuff
+```
+curl https://chrswr.de:4443/blog
+```
+```
+curl -X
